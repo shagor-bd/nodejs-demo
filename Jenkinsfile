@@ -1,12 +1,12 @@
 pipeline {
-    agent any 
+    agent any
     environment {
     DOCKERHUB_CREDENTIALS = credentials('docker-hub-shagor')
     }
     stages { 
         stage('SCM Checkout') {
             steps{
-            git 'https://github.com/ravdy/nodejs-demo.git'
+            git 'https://github.com/shagor-bd/nodejs-demo.git'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push valaxy/nodeapp:$BUILD_NUMBER'
+                sh 'docker push azizctg08/nodeapp:$BUILD_NUMBER'
             }
         }
 }

@@ -25,6 +25,14 @@ pipeline {
                 sh 'docker push azizctg08/nodeapp:$BUILD_NUMBER'
             }
         }
+        stage('Deploying App to Kubernetes') {
+            steps {
+                script {
+                    kubernetesDeploy(configs: "deploymentservice.yml")
+                }
+            }
+        }
+
 }
 post {
         always {
@@ -32,4 +40,3 @@ post {
         }
     }
 }
-

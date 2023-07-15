@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nodeapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nodeapp
@@ -16,23 +16,21 @@ spec:
     spec:
       containers:
       - name: nodeserver
-        image: thetips4you/nodeapp:latest
+        image: azizctg08/nodeapp:latest
         ports:
         - containerPort: 3000
         
         
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: nodeapp-service
 spec:
   selector:
-    app: nodeapp 
-  type: LoadBalancer
+    app: nodeapp
+  type: ClusterIP
   ports:
   - protocol: TCP
     port: 5000
     targetPort: 3000
-    nodePort: 31110

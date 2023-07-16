@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t azizctg08/nodeapp:$BUILD_NUMBER .'
+                sh 'docker build -t azizctg08/nodeapp:latest .'
             }
         }
         stage('login to dockerhub') {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push azizctg08/nodeapp:$BUILD_NUMBER'
+                sh 'docker push azizctg08/nodeapp:latest'
             }
         }
         stage('Deploying App to Kubernetes') {
